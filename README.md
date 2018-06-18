@@ -4,8 +4,8 @@ Projet consistant à pouvoir faire un ensemble d'érosion binaire
 ---
 
 ## Sommaire
-* Usage
-* Résultat de l'application
+* [Usage][Usage]
+* [Résultat de l'application][Result]
 
 ---
 
@@ -20,3 +20,7 @@ Dans le cas où aucun paramètre n'est rentré à la suite de l'appel du program
 
 ## Résultat de l'application
 Voilà un exemple avec la séquence suivante `eeeddd` 3 fois
+
+[Usage]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#usage
+[Result]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#r%C3%A9sultat-de-lapplication
+
