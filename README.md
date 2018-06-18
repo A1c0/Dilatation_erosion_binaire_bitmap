@@ -4,11 +4,11 @@ Projet consistant à pouvoir faire un ensemble d'érosion binaire
 ---
 
 ## Sommaire
-* Installation
-    * Compilation
-    * Utilisation
-* Résultat de l'application
-* Complément
+* [Installation][Installation]
+    * [Compilation][Compilation]
+    * [Utilisation][Utilisation]
+* [Résultat de l'application][Result]
+* [Complément][Complement]
 
 ---
 
@@ -19,7 +19,7 @@ git clone https://github.com/A1c0/Dilatation_erosion_binaire_bitmap.git
 cd Dilatation_erosion_binaire_bitmap
 ```
 
-#### Compilation
+### Compilation
 Dans un second temps il vous faut compiler le projet à l'aide de l'outil _[gcc][gcc]_.
 
 ___Pour Windows :___
@@ -36,7 +36,7 @@ gcc *.o -o program
 rm -rf *.o
 ```
 
-#### Utiliation
+### Utiliation
 Dans le cas où aucun paramètre n'est rentré à la suite de l'appel du programme. Il utilisera une image Lenna comme exemple. l'execution du programme se fait selon la ligne suivante :
 ```shell
 program [chemin/du/fichier.bmp]
@@ -56,3 +56,8 @@ _à poursuivre_
 
 
 [gcc]: https://gcc.gnu.org
+[Installation]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#installation
+[Compilation]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#compilation
+[Utilisation]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#utiliation
+[Result]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#r%C3%A9sultat-de-lapplication
+[Complement]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#compl%C3%A9ment
