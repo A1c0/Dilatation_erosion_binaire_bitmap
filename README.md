@@ -20,6 +20,7 @@ Dans le cas où aucun paramètre n'est rentré à la suite de l'appel du program
 
 ## Résultat de l'application
 Voilà un exemple avec la séquence suivante `eeeddd` 3 fois
+![img1](https://zupimages.net/up/18/25/tstc.png)
 
 [Usage]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#usage
 [Result]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#r%C3%A9sultat-de-lapplication
