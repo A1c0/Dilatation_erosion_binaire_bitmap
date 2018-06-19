@@ -9,7 +9,7 @@ Projet consistant à pouvoir faire un ensemble de dilatation ou d'érosion binai
     * [Utilisation][Utilisation]
 * [Résultat de l'application][Result]
 * [Complément][Complement]
-    * [Dilatation et erosion binaire][Dil&Ero]
+    * [Dilatation et érosion binaire][Dil&Ero]
     * [Connexion 4 ou 8][Co48]
 
 ---
@@ -65,15 +65,15 @@ Le programme vous demandera d'écrire une sequence de `e` (pour une erosion) et 
 un second temps il faudra chosir un type de connexion entre 4 et 8.
 Nous allons developper dans cette partie ces notions.
 
-### Dilatation et erosion binaire
-une dilatation ou une érosion bineaire sont des opérations qui modifie une image pixel par pixel.
+### Dilatation et érosion binaire
+Une dilatation ou une érosion binaire sont des opérations qui modifient une image pixel par pixel.
 
 Une dilatation consiste à étendre un pixel sombre à ses pixels voisins plus clairs. Une érosion consiste en la même 
 opération mais à l'inverse. Ainsi cette dernière consiste à étendre un pixel clair à ses pixels voisins plus sombres.
 ![imgDilEroBin](https://image.noelshack.com/fichiers/2018/25/2/1529412017-dilatationerosionbinaire.jpg)
 
 ### Connexion 4 ou 8
-Une dilatation ou une érosion, comme précedemnt présenté comme une opération qui se fait en fonctions des voisins du 
+Une dilatation ou une érosion, comme précedemnt présenté, comme une opération qui se fait en fonctions des voisins du 
 pixel traité. Une connexion 4 ou 8 consiste à préciser le nombre de voisins pris en compte comme sur la figure ci dessous.
 ![imgCo48](https://image.noelshack.com/fichiers/2018/25/2/1529412017-connexion48.jpg)
 
@@ -83,3 +83,5 @@ pixel traité. Une connexion 4 ou 8 consiste à préciser le nombre de voisins p
 [Utilisation]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#utiliation
 [Result]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#r%C3%A9sultat-de-lapplication
 [Complement]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#compl%C3%A9ment
+[Dil&Ero]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#dilatation-et-erosion-binaire
+[Co48]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#connexion-4-ou-8
