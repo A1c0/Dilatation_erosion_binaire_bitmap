@@ -56,8 +56,9 @@ ___Pour Linux :___
 ---
 
 ## Résultat de l'application
-Voilà un exemple avec la séquence suivante `eeeddd` 3 fois avec un type de connexion 8:
+Voilà un exemple avec la séquence suivante `eeeddd` 3 fois avec un type de connexion 8.
 ![imgRes](https://image.noelshack.com/fichiers/2018/25/1/1529349088-sans-titre-1.jpg)
+
 ---
 
 ## Complément
@@ -75,7 +76,7 @@ opération mais à l'inverse. Ainsi cette dernière consiste à étendre un pixe
 ### Connexion 4 ou 8
 Une dilatation ou une érosion, comme précedemnt présenté, comme une opération qui se fait en fonctions des voisins du 
 pixel traité. Une connexion 4 ou 8 consiste à préciser le nombre de voisins pris en compte comme sur la figure ci dessous.
-![imgCo48](https://image.noelshack.com/fichiers/2018/25/2/1529412017-connexion48.jpg)
+![imgCo48](https://image.noelshack.com/fichiers/2018/25/2/1529415165-co48.jpg)
 
 [gcc]: https://gcc.gnu.org
 [Installation]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#installation
