@@ -25,74 +25,66 @@ int main(int argc, char const *argv[])
         	file_in = fopen("lena_NB.bmp","rb");
         }
     }
-    if (file_in)
-    {
-    	// ***********************************************
-    	// ** CREATION ET LECTURE DE L'ENTETE DU BITMAP **
-    	// ***********************************************
+    if (file_in) {
+        // ***********************************************
+        // ** CREATION ET LECTURE DE L'ENTETE DU BITMAP **
+        // ***********************************************
 
-    	// INITIALISATION DES HEADERS
-    	printf("LECTURE DES HEADERS\n");
-    	info_header headerBMP;
-    	file_header header;
+        // INITIALISATION DES HEADERS
+        printf("LECTURE DES HEADERS\n");
+        info_header headerBMP;
+        file_header header;
         printf("\nDONE\n");
 
-    	// LECTURE DE L'ENTETE DE FICHIER ET DE BITMAP
-    	fread(&header, sizeof(header), 1, file_in);
-    	fread(&headerBMP, sizeof(headerBMP), 1, file_in);
+        // LECTURE DE L'ENTETE DE FICHIER ET DE BITMAP
+        fread(&header, sizeof(header), 1, file_in);
+        fread(&headerBMP, sizeof(headerBMP), 1, file_in);
 
-    	// LECTURE DE LA PALLETTE SI BESOIN
-    	palette ** paletteIMG = NULL;
-    	if (headerBMP.nbColor != 0)
-    	{
-    		paletteIMG = lire_palette (paletteIMG, file_in, headerBMP.nbColor);
-    	}
+        // LECTURE DE LA PALLETTE SI BESOIN
+        palette **paletteIMG = NULL;
+        if (headerBMP.nbColor != 0) {
+            paletteIMG = lire_palette(paletteIMG, file_in, headerBMP.nbColor);
+        }
 
         // AFFICHAGE DES INFORMATION RÉCUPÉRÉ PAR LA LECTURE
-    	afficher_headers(headerBMP, header);
+        afficher_headers(headerBMP, header);
 
 
-    	// ********************************************
-    	// ** CREATION DE LA MATRICE DE MODIFICATION **
-    	// ********************************************
+        // ********************************************
+        // ** CREATION DE LA MATRICE DE MODIFICATION **
+        // ********************************************
 
-    	//INTIALISATION DE LA MATRICE
-    	colorRGB ** matrixIMG_RGB = NULL;
-    	colorNB ** matrixIMG_NB = NULL;
+        //INTIALISATION DE LA MATRICE
+        colorRGB **matrixIMG_RGB = NULL;
+        colorNB **matrixIMG_NB = NULL;
 
-    	if (headerBMP.depth == 24)
-    	{
-    		matrixIMG_RGB = intialisation_matrice_RGB(headerBMP);
-    	}
-    	else if (headerBMP.depth == 8)
-    	{
-    		matrixIMG_NB = intialisation_matrice_NB(headerBMP);
-    	}
-
-    	//LECTURE ET REMPLISSAGE DE LA MATRICE
-        if (headerBMP.depth == 24)
-        {
-        	remplissage_matrice_RGB(matrixIMG_RGB, headerBMP, file_in);
+        if (headerBMP.depth == 24) {
+            matrixIMG_RGB = intialisation_matrice_RGB(headerBMP);
+        } else if (headerBMP.depth == 8) {
+            matrixIMG_NB = intialisation_matrice_NB(headerBMP);
         }
-        else if (headerBMP.depth == 8)
-    	{
-    		remplissage_matrice_NB(matrixIMG_NB, headerBMP, file_in);
-    	}
 
-    	// *******************************************
+        //LECTURE ET REMPLISSAGE DE LA MATRICE
+        if (headerBMP.depth == 24) {
+            remplissage_matrice_RGB(matrixIMG_RGB, headerBMP, file_in);
+        } else if (headerBMP.depth == 8) {
+            remplissage_matrice_NB(matrixIMG_NB, headerBMP, file_in);
+        }
+
+        // *******************************************
         // ** PROCESSUS: MODIFICATION DE LA MATRICE **
         // *******************************************
 
         // CHOIX DE LA MODIFICATION
         char action[200];
-        int NbrAction;
+        int nbrAction;
         printf("Dilatation ou Erosion ?\n");
         printf("-----------------------\n");
         printf("Veulliez rentrer une chaine de caratere pour avoir des dilatations ou des erosions dans l'ordre souhait""\x82""\n");
         printf("Ex: eeeddede\n");
         printf("Votre choix: ");
-        scanf("%s",action);
-        NbrAction = strlen(action);
+        scanf("%s", action);
+        nbrAction = (int) strlen(action);
         int repeat;
         printf("Combien de fois voulez-vous r""\x82""p""\x82""ter cette s""\x82""quence ?\n");
         printf("Votre choix: ");
@@ -101,119 +93,98 @@ int main(int argc, char const *argv[])
         int choix2;
         printf("\nQuel type de connexion ?\n(1)\tConnexion 4\n(2)\tConnexion 8\n");
         printf("Votre choix: ");
-        scanf("%d",&choix2);
+        scanf("%d", &choix2);
         printf("\n");
+        // Gestion du pourcentage
+        char pc = '%';
 
-        infoNB ** etiquette_NB = NULL;
-        infoRGB ** etiquette_RGB = NULL;
-    	int i, j, k, l;
+        infoNB **etiquette_NB = NULL;
+        infoRGB **etiquette_RGB = NULL;
+        int i, j, k, l;
 
-        if (headerBMP.depth == 24)
-        {
+        if (headerBMP.depth == 24) {
             etiquette_RGB = calloc_matrice_info_RGB(etiquette_RGB, headerBMP.width, headerBMP.height);
-        }
-        else if (headerBMP.depth == 8)
-        {
+        } else if (headerBMP.depth == 8) {
             etiquette_NB = calloc_matrice_info_NB(etiquette_NB, headerBMP.width, headerBMP.height);
         }
-        
-        for (k = 0; k < NbrAction + 1; k++)
-        {
-            if (action[k] == 'e')
-            {
-                choix1 = 1;
-            }
-            else if (action[k] == 'd')
-            {
-                choix1 = 2;
-            }
-            else
-            {
-                choix1 = 0;
-            }
-            // PARCOURS DE LA MATRICE ET REMPLISSAGE DU TABLEAU ETIQUETTE
-            for (l = 0; l < repeat; l++)
-            {
-                for(j = 0; j < headerBMP.height; j++)
-                {
-                    for(i = 0; i < headerBMP.width; i++)
-                    {
-                        if (choix1 == 1)
-                        {
-                            if (choix2 == 1)
-                            {
-                            	if (headerBMP.depth == 24)
-                                {
-                            		coin_info_erosion_C4_RGB(matrixIMG_RGB, etiquette_RGB, i, j, headerBMP.width, headerBMP.height);  
+        printf("Traiement de l'image: \n");
+        for (l = 0; l < repeat; l++) {
+            for (k = 0; k < nbrAction; k++) {
+                if (action[k] == 'e') {
+                    choix1 = 1;
+                } else if (action[k] == 'd') {
+                    choix1 = 2;
+                } else {
+                    choix1 = 0;
+                }
+                // PARCOURS DE LA MATRICE ET REMPLISSAGE DU TABLEAU ETIQUETTE
+
+                for (j = 0; j < headerBMP.height; j++) {
+                    for (i = 0; i < headerBMP.width; i++) {
+                        if (choix1 == 1) {
+                            if (choix2 == 1) {
+                                if (headerBMP.depth == 24) {
+                                    coin_info_erosion_C4_RGB(matrixIMG_RGB, etiquette_RGB, i, j, headerBMP.width,
+                                                             headerBMP.height);
                                 }
-                            	if (headerBMP.depth == 8)
-                                {
-                            		coin_info_erosion_C4_NB(matrixIMG_NB, etiquette_NB, i, j, headerBMP.width, headerBMP.height);
-                                }   
+                                if (headerBMP.depth == 8) {
+                                    coin_info_erosion_C4_NB(matrixIMG_NB, etiquette_NB, i, j, headerBMP.width,
+                                                            headerBMP.height);
+                                }
                             }
-                            if (choix2 == 2)
-                            {
-                            	if (headerBMP.depth == 24)
-                                {
-                            		coin_info_erosion_C8_RGB(matrixIMG_RGB, etiquette_RGB, i, j, headerBMP.width, headerBMP.height);
+                            if (choix2 == 2) {
+                                if (headerBMP.depth == 24) {
+                                    coin_info_erosion_C8_RGB(matrixIMG_RGB, etiquette_RGB, i, j, headerBMP.width,
+                                                             headerBMP.height);
                                 }
-                            	if (headerBMP.depth == 8)
-                                {
-                                	coin_info_erosion_C8_NB(matrixIMG_NB, etiquette_NB, i, j, headerBMP.width, headerBMP.height);
+                                if (headerBMP.depth == 8) {
+                                    coin_info_erosion_C8_NB(matrixIMG_NB, etiquette_NB, i, j, headerBMP.width,
+                                                            headerBMP.height);
                                 }
                             }
                         }
-                        if (choix1 == 2)
-                        {
-                            if (choix2 == 1)
-                            {
-                            	if (headerBMP.depth == 24)
-                                {
-                            		coin_info_dilatation_C4_RGB(matrixIMG_RGB, etiquette_RGB, i, j, headerBMP.width, headerBMP.height);
+                        if (choix1 == 2) {
+                            if (choix2 == 1) {
+                                if (headerBMP.depth == 24) {
+                                    coin_info_dilatation_C4_RGB(matrixIMG_RGB, etiquette_RGB, i, j, headerBMP.width,
+                                                                headerBMP.height);
                                 }
-                            	if (headerBMP.depth == 8)
-                                {
-                                	coin_info_dilatation_C4_NB(matrixIMG_NB, etiquette_NB, i, j, headerBMP.width, headerBMP.height);
+                                if (headerBMP.depth == 8) {
+                                    coin_info_dilatation_C4_NB(matrixIMG_NB, etiquette_NB, i, j, headerBMP.width,
+                                                               headerBMP.height);
                                 }
                             }
-                            if (choix2 == 2)
-                            {
-                            	if (headerBMP.depth == 24)
-                                {
-                            		coin_info_dilatation_C8_RGB(matrixIMG_RGB, etiquette_RGB, i, j, headerBMP.width, headerBMP.height);
+                            if (choix2 == 2) {
+                                if (headerBMP.depth == 24) {
+                                    coin_info_dilatation_C8_RGB(matrixIMG_RGB, etiquette_RGB, i, j, headerBMP.width,
+                                                                headerBMP.height);
                                 }
-                            	if (headerBMP.depth == 8)
-                                {
-                                	coin_info_dilatation_C8_NB(matrixIMG_NB, etiquette_NB, i, j, headerBMP.width, headerBMP.height);
+                                if (headerBMP.depth == 8) {
+                                    coin_info_dilatation_C8_NB(matrixIMG_NB, etiquette_NB, i, j, headerBMP.width,
+                                                               headerBMP.height);
                                 }
                             }
                         }
                     }
-                }
-            }
 
-            // PARCOURS DE LA MATRICE ET EXETUTION DES MODIFICATIONS
-        	if (headerBMP.depth == 24)
-            {         
-                if (choix1 == 1)
-                {
-                    erosion_RGB(matrixIMG_RGB, etiquette_RGB, headerBMP.width, headerBMP.height);
                 }
-                if (choix1 == 2)
-                {
-                    dilatation_RGB(matrixIMG_RGB, etiquette_RGB, headerBMP.width, headerBMP.height);
+
+                // PARCOURS DE LA MATRICE ET EXETUTION DES MODIFICATIONS
+                if (headerBMP.depth == 24) {
+                    if (choix1 == 1) {
+                        erosion_RGB(matrixIMG_RGB, etiquette_RGB, headerBMP.width, headerBMP.height);
+                    }
+                    if (choix1 == 2) {
+                        dilatation_RGB(matrixIMG_RGB, etiquette_RGB, headerBMP.width, headerBMP.height);
+                    }
+                } else if (headerBMP.depth == 8) {
+                    if (choix1 == 1) {
+                        erosion_NB(matrixIMG_NB, etiquette_NB, headerBMP.width, headerBMP.height);
+                    } else if (choix1 == 2) {
+                        dilatation_NB(matrixIMG_NB, etiquette_NB, headerBMP.width, headerBMP.height);
+                    }
                 }
-            }     
-            else if (headerBMP.depth == 8)
-            {
-                if (choix1 == 1)
-                {
-                    erosion_NB(matrixIMG_NB, etiquette_NB, headerBMP.width, headerBMP.height);
-                }
-                else if (choix1 == 2)
-                {
-                    dilatation_NB(matrixIMG_NB, etiquette_NB, headerBMP.width, headerBMP.height);
-                }
+                printf("%d%c\n", (int)(((double)(nbrAction * l + k + 1)/(repeat*nbrAction)) * 100), pc);
             }
         }
 
