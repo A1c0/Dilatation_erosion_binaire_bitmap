@@ -9,10 +9,10 @@
 colorRGB ** calloc_matrice_RGB (colorRGB **tab, int x, int y)
 {
     int i;
-    tab = (colorRGB**) calloc(x, sizeof(colorRGB*));
-    for(i=0;i<x;i++)
+    tab = (colorRGB**) calloc((size_t) y, sizeof(colorRGB*));
+    for(i = 0; i < y; i++)
     {
-        tab[i] = (colorRGB*) calloc(y, sizeof(colorRGB));
+        tab[i] = (colorRGB*) calloc((size_t) x, sizeof(colorRGB));
     }
     return tab;
 }
@@ -20,10 +20,10 @@ colorRGB ** calloc_matrice_RGB (colorRGB **tab, int x, int y)
 infoRGB ** calloc_matrice_info_RGB (infoRGB** tab, int x, int y)
 {
     int i;
-    tab = (infoRGB**) calloc(x, sizeof(infoRGB*));
+    tab = (infoRGB**) calloc((size_t) y, sizeof(infoRGB*));
     for(i=0;i<y;i++)
     {
-        tab[i] = (infoRGB*) calloc(y, sizeof(infoRGB));
+        tab[i] = (infoRGB*) calloc((size_t) x, sizeof(infoRGB));
     }
     return tab;
 }

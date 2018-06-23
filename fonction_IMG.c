@@ -1,5 +1,7 @@
 //  Copyright © 2016 Alexandre CONTASSOT, Anne-Sophie LABANSAT. All rights reserved.
 #include "fonction_IMG.h"
+#include "fonction_DE_RGB.h"
+#include "fonction_DE_NB.h"
 
 void afficher_headers(info_header headerBMP, file_header header)
 {
@@ -28,21 +30,15 @@ void afficher_headers(info_header headerBMP, file_header header)
     printf("Size of header: %d\n", sizeof(header));
     printf("Size of HI: %d\n", sizeof(headerBMP));
     printf("Size of RGB: %d\n\n\n", sizeof(colorRGB));
-    system("pause");
 }
 
 
 colorRGB ** intialisation_matrice_RGB(info_header headerBMP)
 {
-	int i;
     colorRGB ** matrice = NULL;
 	int matrixWidth = headerBMP.width;
 	int matrixHeight = headerBMP.height;
-	matrice = (colorRGB**) malloc(matrixWidth* sizeof(colorRGB*));
-	for(i=0; i<matrixHeight; i++)
-	{
-	    matrice[i] = (colorRGB*) malloc(matrixHeight* sizeof(colorRGB));
-	}
+	matrice = calloc_matrice_RGB(matrice, matrixWidth, matrixHeight);
     return matrice;
 }
 
@@ -103,11 +99,7 @@ colorNB ** intialisation_matrice_NB(info_header headerBMP)
     colorNB ** matrice = NULL;
     int matrixWidth = headerBMP.width;
     int matrixHeight = headerBMP.height;
-    matrice = (colorNB**) calloc(matrixWidth, sizeof(colorNB*));
-    for(i=0; i<matrixHeight; i++)
-    {
-        matrice[i] = (colorNB*) calloc(matrixHeight, sizeof(colorNB));
-    }
+    matrice = calloc_matrice_NB(matrice, matrixWidth, matrixHeight);
     return matrice;
 }
 

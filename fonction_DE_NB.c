@@ -9,10 +9,10 @@
 colorNB ** calloc_matrice_NB (colorNB **tab, int x, int y)
 {
     int i;
-    tab = (colorNB**) calloc(x, sizeof(colorNB*));
-    for(i=0;i<x;i++)
+    tab = (colorNB**) calloc((size_t) y, sizeof(colorNB*));
+    for(i = 0; i < y; i++)
     {
-        tab[i] = (colorNB*) calloc(y, sizeof(colorNB));
+        tab[i] = (colorNB*) calloc((size_t) x, sizeof(colorNB));
     }
     return tab;
 }
@@ -20,10 +20,10 @@ colorNB ** calloc_matrice_NB (colorNB **tab, int x, int y)
 infoNB ** calloc_matrice_info_NB (infoNB** tab, int x, int y)
 {
     int i;
-    tab = (infoNB**) calloc(x, sizeof(infoNB*));
-    for(i=0;i<y;i++)
+    tab = (infoNB**) calloc((size_t) y, sizeof(infoNB*));
+    for(i = 0; i < y; i++)
     {
-        tab[i] = (infoNB*) calloc(y, sizeof(infoNB));
+        tab[i] = (infoNB*) calloc((size_t) x, sizeof(infoNB));
     }
     return tab;
 }
