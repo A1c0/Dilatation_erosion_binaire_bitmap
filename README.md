@@ -3,14 +3,14 @@ Projet consistant à pouvoir faire un ensemble de dilatation ou d'érosion binai
 
 ---
 
-## Sommaire
-* [Installation][1]
-    * [Compilation][1a]
-    * [Utilisation][1b]
-* [Résultat de l'application][2]
-* [Complément][3]
-    * [Dilatation et érosion binaire][3a]
-    * [Connexion 4 ou 8][3b]
+- [Dilatation et érosion binaire sur une image de format BITMAP](#dilatation-et-%C3%A9rosion-binaire-sur-une-image-de-format-bitmap)
+    - [Installation](#installation)
+        - [Compilation](#compilation)
+        - [Utilliation](#utilliation)
+    - [Résultat de l'application](#r%C3%A9sultat-de-lapplication)
+    - [Complément](#compl%C3%A9ment)
+        - [Dilatation et érosion binaire](#dilatation-et-%C3%A9rosion-binaire)
+        - [Connexion 4 ou 8](#connexion-4-ou-8)
 
 ---
 
@@ -79,10 +79,3 @@ pixel traité. Une connexion 4 ou 8 consiste à préciser le nombre de voisins p
 ![imgCo48](https://image.noelshack.com/fichiers/2018/25/2/1529415165-co48.jpg)
 
 [gcc]: https://gcc.gnu.org
-[1]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#installation
-[1a]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#compilation
-[1b]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#utilliation
-[2]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#résultat-de-lapplication
-[3]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#complément
-[3a]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#dilatation-et-érosion-binaire
-[3b]: https://github.com/A1c0/Dilatation_erosion_binaire_bitmap#connexion-4-ou-8
